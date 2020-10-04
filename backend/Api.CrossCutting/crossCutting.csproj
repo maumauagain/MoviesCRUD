@@ -1,5 +1,15 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
+<ItemGroup>
+  <PackageReference Include="AutoMapper" Version="10.0.0" />
+</ItemGroup>
+
+<ItemGroup>
+  <ProjectReference Include="..\Api.Data\data.csproj" />
+  <ProjectReference Include="..\Api.Service\service.csproj" />
+  <ProjectReference Include="..\Api.Domain\domain.csproj" />
+</ItemGroup>
+
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
