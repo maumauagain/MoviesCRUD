@@ -26,7 +26,9 @@ namespace Api.Data.Repository
                 if (result is null)
                     return false;
 
-                _dataset.Remove(result);
+                var removedItem = result;
+                removedItem.Removed = true;
+                _context.Entry(result).CurrentValues.SetValues(removedItem);
                 await _context.SaveChangesAsync();
                 return true;
             }

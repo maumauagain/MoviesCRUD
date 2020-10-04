@@ -18,6 +18,8 @@ namespace Api.Data.Mapping
                 .HasMaxLength(60);
             builder.Property(movie => movie.Year)
                 .HasMaxLength(4);
+            builder.Property(movie => movie.Removed)
+                .HasDefaultValue(false);
         }
     }
 }

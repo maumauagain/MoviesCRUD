@@ -12,6 +12,8 @@ namespace Api.Data.Mapping
             builder.HasKey(genre => genre.Id);
             builder.HasIndex(genre => genre.Name)
                 .IsUnique();
+            builder.Property(genre => genre.Removed)
+                .HasDefaultValue(false);
         }
     }
 }
