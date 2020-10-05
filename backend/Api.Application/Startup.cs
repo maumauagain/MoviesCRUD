@@ -13,6 +13,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.OpenApi.Models;
 
 namespace application
 {
@@ -44,6 +45,22 @@ namespace application
             services.AddControllers()
                 .AddNewtonsoftJson(options =>
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Version = "v1",
+                    Title = "Api para gerenciar filmes",
+                    Description = "AspNetCore3.1 com EFCore",
+                    Contact = new OpenApiContact
+                    {
+                        Name = "Amauri Martins",
+                        Email = "Amauri.martins.jr@hotmail.com",
+                        Url = new Uri("https://github.com/maumauagain")
+                    }
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -53,6 +70,13 @@ namespace application
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Api para gerenciar filmes");
+                c.RoutePrefix = string.Empty;
+            });
 
             //app.UseHttpsRedirection();
 
