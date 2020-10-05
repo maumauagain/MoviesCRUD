@@ -31,7 +31,7 @@ namespace Api.Service.Services
             return _mapper.Map<MovieDTO>(entity);
         }
 
-        public async Task<IEnumerable<MovieDTO>> GetAll(Guid id)
+        public async Task<IEnumerable<MovieDTO>> GetAll()
         {
             var entities = await _repository.SelectAsync();
             return _mapper.Map<IEnumerable<MovieDTO>>(entities);
