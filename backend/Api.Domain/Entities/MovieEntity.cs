@@ -7,7 +7,7 @@ namespace Api.Domain.Entities
         public string Title { get; set; }
         public string Director { get; set; }
         public Guid GenreId { get; set; }
-        public GenreEntity Genre { get; set; }
+        public virtual GenreEntity Genre { get; set; }
         public string Synopsis { get; set; }
         public int? Year { get; set; }
     }

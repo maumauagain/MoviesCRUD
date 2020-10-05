@@ -5,6 +5,6 @@ namespace Api.Domain.Entities
     public class GenreEntity : BaseEntity
     {
         public string Name { get; set; }
-        public ICollection<MovieEntity> Movies { get; set; }
+        public virtual ICollection<MovieEntity> Movies { get; set; }
     }
 }

@@ -25,16 +25,16 @@ namespace Api.Service.Services
             return await _repository.DeleteAsync(id);
         }
 
-        public async Task<MovieDTO> Get(Guid id)
+        public async Task<MovieDTOCompleto> Get(Guid id)
         {
             var entity = await _repository.SelectAsync(id);
-            return _mapper.Map<MovieDTO>(entity);
+            return _mapper.Map<MovieDTOCompleto>(entity);
         }
 
-        public async Task<IEnumerable<MovieDTO>> GetAll()
+        public async Task<IEnumerable<MovieDTOCompleto>> GetAll()
         {
             var entities = await _repository.SelectAsync();
-            return _mapper.Map<IEnumerable<MovieDTO>>(entities);
+            return _mapper.Map<IEnumerable<MovieDTOCompleto>>(entities);
         }
 
         public async Task<MovieDTO> Post(MovieDTOCreate movie)
