@@ -1,3 +1,4 @@
+using System;
 using Api.Data.Context;
 using Api.Data.Repository;
 using Api.Domain.Interfaces;
@@ -13,7 +14,8 @@ namespace Api.CrossCutting.DependencyInjection
             serviceCollection.AddScoped(typeof(IRepository<>), typeof(BaseRepository<>));
 
             serviceCollection.AddDbContext<MyContext>(
-                options => options.UseLazyLoadingProxies().UseMySql("Server=localhost;Port=3306;Database=dbMovie;Uid=root;Pwd=root")
+                options => options.UseLazyLoadingProxies()
+                                  .UseMySql(Environment.GetEnvironmentVariable("DB_CONNECTION"))
             );
 
         }

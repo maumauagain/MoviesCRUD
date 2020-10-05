@@ -1,3 +1,4 @@
+using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 
@@ -8,7 +9,7 @@ namespace Api.Data.Context
         public MyContext CreateDbContext(string[] args)
         {
             //Criar as migrations
-            var connectionString = "Server=localhost;Port=3306;Database=dbMovie;Uid=root;Pwd=root";
+            var connectionString = Environment.GetEnvironmentVariable("DB_CONNECTION");
             var optionsBuilder = new DbContextOptionsBuilder<MyContext>();
             optionsBuilder.UseLazyLoadingProxies().UseMySql(connectionString);
             return new MyContext(optionsBuilder.Options);
