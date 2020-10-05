@@ -8,8 +8,9 @@ namespace Api.Domain.DTO.Movie
         public Guid Id { get; set; }
         public string Title { get; set; }
         public string Director { get; set; }
-        public int Year { get; set; }
+        public int? Year { get; set; }
         public DateTime CreateAt { get; set; }
-        public GenreEntity Genre { get; set; }
+        public Guid GenreId { get; set; }
+        public virtual GenreEntity Genre { get; set; }
     }
 }

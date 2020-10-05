@@ -30,7 +30,9 @@ namespace data.Migrations
                         .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
 
                     b.Property<bool>("Removed")
-                        .HasColumnType("tinyint(1)");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("tinyint(1)")
+                        .HasDefaultValue(false);
 
                     b.Property<DateTime?>("UpdateAt")
                         .HasColumnType("datetime(6)");
@@ -41,6 +43,36 @@ namespace data.Migrations
                         .IsUnique();
 
                     b.ToTable("Genre");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("645269ed-2287-4fd1-90de-5649d340cb8f"),
+                            CreateAt = new DateTime(2020, 10, 5, 10, 9, 42, 135, DateTimeKind.Utc).AddTicks(398),
+                            Name = "Terror",
+                            Removed = false
+                        },
+                        new
+                        {
+                            Id = new Guid("9ab171af-3604-4375-b87c-14fdb8706a53"),
+                            CreateAt = new DateTime(2020, 10, 5, 10, 9, 42, 135, DateTimeKind.Utc).AddTicks(745),
+                            Name = "Comédia",
+                            Removed = false
+                        },
+                        new
+                        {
+                            Id = new Guid("e502ddce-bb51-445b-980d-650a3d37b4a0"),
+                            CreateAt = new DateTime(2020, 10, 5, 10, 9, 42, 135, DateTimeKind.Utc).AddTicks(755),
+                            Name = "Romance",
+                            Removed = false
+                        },
+                        new
+                        {
+                            Id = new Guid("5fad4f3f-3ba6-4f84-a642-1c4c5d5269e4"),
+                            CreateAt = new DateTime(2020, 10, 5, 10, 9, 42, 135, DateTimeKind.Utc).AddTicks(757),
+                            Name = "Aventura",
+                            Removed = false
+                        });
                 });
 
             modelBuilder.Entity("Api.Domain.Entities.MovieEntity", b =>
@@ -57,11 +89,13 @@ namespace data.Migrations
                         .HasColumnType("varchar(60) CHARACTER SET utf8mb4")
                         .HasMaxLength(60);
 
-                    b.Property<Guid?>("GenreId")
+                    b.Property<Guid>("GenreId")
                         .HasColumnType("char(36)");
 
                     b.Property<bool>("Removed")
-                        .HasColumnType("tinyint(1)");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("tinyint(1)")
+                        .HasDefaultValue(false);
 
                     b.Property<string>("Synopsis")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
@@ -74,9 +108,8 @@ namespace data.Migrations
                     b.Property<DateTime?>("UpdateAt")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<int>("Year")
-                        .HasColumnType("int")
-                        .HasMaxLength(4);
+                    b.Property<int?>("Year")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -88,8 +121,10 @@ namespace data.Migrations
             modelBuilder.Entity("Api.Domain.Entities.MovieEntity", b =>
                 {
                     b.HasOne("Api.Domain.Entities.GenreEntity", "Genre")
-                        .WithMany()
-                        .HasForeignKey("GenreId");
+                        .WithMany("Movies")
+                        .HasForeignKey("GenreId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

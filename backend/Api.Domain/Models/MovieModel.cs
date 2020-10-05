@@ -26,18 +26,18 @@ namespace Api.Domain.Models
             set { _director = value; }
         }
 
-        private int _year;
-        public int Year
+        private int? _year;
+        public int? Year
         {
             get { return _year; }
             set { _year = value; }
         }
 
-        private GenreEntity _genre;
-        public GenreEntity Genre
+        private Guid _genreId;
+        public Guid GenreId
         {
-            get { return _genre; }
-            set { _genre = value; }
+            get { return _genreId; }
+            set { _genreId = value; }
         }
 
         private DateTime _createAt;

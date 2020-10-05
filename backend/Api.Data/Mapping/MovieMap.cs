@@ -16,10 +16,10 @@ namespace Api.Data.Mapping
             builder.Property(movie => movie.Director)
                 .IsRequired()
                 .HasMaxLength(60);
-            builder.Property(movie => movie.Year)
-                .HasMaxLength(4);
             builder.Property(movie => movie.Removed)
                 .HasDefaultValue(false);
+            builder.HasOne(movie => movie.Genre)
+                .WithMany(genre => genre.Movies);
         }
     }
 }

@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using Api.Domain.DTO.Movie;
@@ -27,6 +28,10 @@ namespace Api.Application.Controllers
 
             try
             {
+                // var result = await _service.GetAll();
+                // var genre = await _serviceGenre.Get(result.First().GenreId);
+                // result.First().Genre = genre;
+
                 return Ok(await _service.GetAll());
             }
             catch (ArgumentException ex)

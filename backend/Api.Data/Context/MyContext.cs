@@ -1,4 +1,5 @@
 using Api.Data.Mapping;
+using Api.Data.Seeds;
 using Api.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
@@ -16,6 +17,9 @@ namespace Api.Data.Context
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<GenreEntity>(new GenreMap().Configure);
             modelBuilder.Entity<MovieEntity>(new MovieMap().Configure);
+
+            //Deixa os Gêneros pré-cadastrados.
+            GenreSeeds.Genres(modelBuilder);
         }
     }
 }

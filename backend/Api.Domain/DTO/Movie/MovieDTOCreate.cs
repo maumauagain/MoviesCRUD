@@ -1,3 +1,4 @@
+using System;
 using System.ComponentModel.DataAnnotations;
 using Api.Domain.Entities;
 
@@ -14,12 +15,10 @@ namespace Api.Domain.DTO.Movie
         public string Director { get; set; }
 
         [Required(ErrorMessage = "Este campo é obrigatório")]
-        public GenreEntity Genre { get; set; }
+        public Guid GenreId { get; set; }
 
         [MaxLength(500, ErrorMessage = "Sinopse deve ter no máximo 500 caracteres")]
         public string Synopsis { get; set; }
-
-        [MaxLength(4, ErrorMessage = "Ano de estréia deve ter no máximo 4 caracteres")]
-        public int Year { get; set; }
+        public int? Year { get; set; }
     }
 }

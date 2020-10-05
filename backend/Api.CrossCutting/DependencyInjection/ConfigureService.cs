@@ -9,6 +9,7 @@ namespace Api.CrossCutting.DependencyInjection
         public static void ConfigureDependenciesService(IServiceCollection serviceCollection)
         {
             serviceCollection.AddTransient<IMovieService, MovieService>();
+            serviceCollection.AddTransient<IGenreService, GenreService>();
         }
     }
 }
